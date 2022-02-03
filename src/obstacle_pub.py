@@ -40,6 +40,7 @@ class ObstaclePublisher:
         self.ypos = msg.pose.pose.position.y # parse y-component of position from odometry message
 
         # need to calculate relative positiion vector, then rotate
+        #rospy.loginfo(self.xpos)
         for i in range(self.ob_list_g.shape[0]):
             xrel = self.ob_list_g[i,0]-self.xpos
             yrel = self.ob_list_g[i,1]-self.ypos
@@ -67,6 +68,8 @@ class ObstaclePublisher:
             # publish point message
             rospy.loginfo("Publishing %f obstacle(s)",count)
             self.obstacle_pub.publish(tmp)
+        else:
+            rospy.loginfo("Publishing 0 obstacle(s)")
 
 
 

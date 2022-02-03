@@ -11,17 +11,17 @@ delay: 3.0
 
 # If your IMU does not account for magnetic declination, enter the value for your location here. If you don't know it,
 # see http://www.ngdc.noaa.gov/geomag-web/ (make sure to convert the value to radians). This parameter is mandatory.
-magnetic_declination_radians: -0.19338248  # For lat/long 138.983709, -76.482958
+magnetic_declination_radians: -0.19338248  # For lat/long 38.983709, -76.482958
 
 # Your IMU's yaw, once the magentic_declination_radians value is added to it, should report 0 when facing east. If it
 # doesn't, enter the offset here. Defaults to 0.
 yaw_offset: 1.570796327  # IMU reads 0 facing magnetic north, not east
 
 # If this is true, the altitude is set to 0 in the output odometry message. Defaults to false.
-zero_altitude: false
+zero_altitude: true
 
 # If this is true, the transform world_frame->utm transform is broadcast for use by other nodes. Defaults to false.
-broadcast_cartesian_transform: true
+broadcast_cartesian_transform: false
 
 
 # If this is true, the utm->world_frame transform will be published instead of the world_frame->utm transform.

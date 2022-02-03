@@ -11,21 +11,23 @@
 
 <launch>
 
+  <!--Publish transforms from IMU to base_link and GPS to base_link /-->
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="bl_imu" args="0 0 0 0 0 0 1 base_link imu_link" /-->
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="bl_gps" args="0 0 0 0 0 0 1 imu_link gps_link"/-->
   <!--osparam file="$(find rover_navigation)/config/dual_ekf_navsat_params.yaml" command="load"/-->
 
   <!--node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true"/-->
 
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" ns="rover">
+  <!--node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" ns="rover">
     <rosparam command="load" file="$(find rover_navigation)/config/ekf_template.yaml" />
-    <remap from="odometry/filtered" to="odom/ekf/filtered"/>
-  </node>
+  </node-->
 
 
   <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" clear_params="true" ns="rover">
     <rosparam command="load" file="$(find rover_navigation)/config/navsat_transform_params.yaml" />
-    <remap from="imu/data" to="imu"/>
-    <remap from="odometry/filtered" to="odom"/>
-    <remap from="gps/fix" to="gps"/>
+    <!--remap from="imu/data" to="imu"/-->
+    <!--remap from="odometry/filtered" to="odom"/-->
+    <!--remap from="gps/fix" to="gps"/-->
   </node>
 
 </launch>

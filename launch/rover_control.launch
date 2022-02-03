@@ -16,6 +16,10 @@
     <remap from="/joint_states" to="/rover/joint_states" />
   </node>
 
+
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="bl_imu" args="0 0 0 0 0 0 1 base_link imu_link" /-->
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="bl_gps" args="0 0 0 0 0 0 1 imu_link gps_link"/-->
+
   <node ns = "rover" name="rover_sim_interface" pkg="rover_navigation" type="rover_sim_interface.py"/>
   <!--node ns = "rover" name="rover_tracking_control" pkg="rover_control" type="spd_yrt_controller.py"/-->
 
