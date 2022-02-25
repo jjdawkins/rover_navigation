@@ -9,6 +9,9 @@ project(rover_navigation)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  roscpp
+  std_msgs
+  tf2
 )
 
 ## System dependencies are found with CMake's conventions

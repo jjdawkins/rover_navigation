@@ -1,0 +1,95 @@
+<robot name="rover_hardware">
+  <link name="base_link" />
+  <!--link name="body" /-->
+  <!--link name="left_rear_wheel" /-->
+  <!--link name="right_rear_wheel" /-->
+  <!--link name="left_steering_hinge" /-->
+  <!--link name="right_steering_hinge" /-->
+  <!--link name="left_front_wheel" /-->
+  <!--link name="right_front_wheel"/-->
+  <link name="realsense" />
+  <link name="laser" />
+  <link name="imu_link" />
+  <link name="gps_link" />
+
+
+  <!--joint name="left_rear_wheel_joint" type="continuous">
+    <origin xyz="-0.02 0.12 0" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="left_rear_wheel" />
+    <axis xyz="0 0 -1" />
+    <dynamics damping="0.05" friction="0.0"/>
+    <limit effort="10" velocity="100" />
+  </joint-->
+
+  <!-- Add the right rear wheel with its joints and tranmissions -->
+  <!--joint name="right_rear_wheel_joint" type="continuous">
+    <origin xyz="-0.02 -0.12 0" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="right_rear_wheel" />
+    <axis xyz="0 0 -1" />
+  </joint-->
+
+  <!-- Add the left steering hinge with its joints and tranmissions -->
+  <!--joint name="left_steering_hinge_joint" type="revolute">
+    <origin xyz="0.25 0.12 0" rpy="0 1.5708 0" />
+    <parent link="base_link" />
+    <child link="left_steering_hinge" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.0" upper="1.0" effort="10" velocity="100" />
+  </joint-->
+
+  <!-- Add the right steering hinge with its joints and tranmissions -->
+  <!--joint name="right_steering_hinge_joint" type="continuous">
+    <origin xyz="0.25 -0.12 0" rpy="0 1.5708 0" />
+    <parent link="base_link" />
+    <child link="right_steering_hinge" />
+    <axis xyz="-1 0 0" />
+  </joint-->
+
+  <!-- Add the left front wheel with its joints and tranmissions -->
+  <!--joint name="left_front_wheel_joint" type="continuous">
+    <origin xyz="0 0 0" rpy="1.5708 0 0" />
+    <parent link="left_steering_hinge" />
+    <child link="left_front_wheel" />
+    <axis xyz="0 0 -1" />
+  </joint-->
+
+  <!-- Add the left front wheel with its joints and tranmissions -->
+  <!--joint name="right_front_wheel_joint" type="continuous">
+    <origin xyz="0 0 0" rpy="1.5708 0 0" />
+    <parent link="right_steering_hinge" />
+    <child link="right_front_wheel" />
+    <axis xyz="0 0 -1" />
+  </joint-->
+
+  <joint name="realsense_joint" type="fixed">
+    <origin xyz="0.1 0.0 0.15" rpy="0 0 0"/>
+    <parent link="base_link" />
+    <child link="realsense" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- Add TG30 laser scanner -->
+  <joint name="laser_joint" type="fixed">
+    <origin xyz="0.045 0.0 0.165" rpy="0 0 0"/>
+    <parent link="base_link" />
+    <child link="laser" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <joint name="imu_joint" type="fixed">
+    <axis xyz="1 0 0"/> <!-- 0 1 0 -->
+    <origin xyz="0.05 0 0.07"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+  </joint>
+
+  <joint name="gps_joint" type="fixed">
+    <axis xyz="1 0 0"/> <!-- 0 1 0 -->
+    <origin xyz="0 0 0.125"/>
+    <parent link="base_link"/>
+    <child link="gps_link"/>
+  </joint>
+
+</robot>
