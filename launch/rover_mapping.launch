@@ -1,0 +1,11 @@
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find rover_description)/urdf/rover.xacro" />
+  <node name="Slam_Node" pkg="gmapping" type="slam_gmapping" output="screen">
+    <remap from="scan" to="/rover/scan"/>
+
+  </node>
+  <!--node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /-->
+
+
+</launch>
