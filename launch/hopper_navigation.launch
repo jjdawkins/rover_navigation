@@ -1,18 +1,19 @@
 <launch>
 
   <!-- known map server, map files are artemis.yaml and HopperFloorG.yaml -->
-  <arg name="map" default="$(find rover_navigation)/maps/HopperFloorG.yaml" />
+  <arg name="map" default="$(find rover_navigation)/maps/hopper_loop.yaml" />
+  <arg name="rover_name" default="rover_3"/>
 
-  <node name="costmap_node" pkg="costmap_2d" type="costmap_2d_node" >
+  <!--node name="costmap_node" pkg="costmap_2d" type="costmap_2d_node" >
     <rosparam file="$(find rover_navigation)/config/costmap_params.yaml" command="load" ns="costmap" />
-  </node>
+  </node-->
 
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map)"/>
 
   <!-- amcl -->
   <arg name="use_map_topic"  default="false"/>
-  <arg name="scan_topic"     default="/rover/scan"/>
+  <arg name="scan_topic"     default="/$(arg rover_name)/scan"/>
   <arg name="initial_pose_x" default="0.0"/>
   <arg name="initial_pose_y" default="0.0"/>
   <arg name="initial_pose_a" default="0.0"/>
@@ -57,5 +58,12 @@
     <remap from="scan"                      to="$(arg scan_topic)"/>
   </node>
 
+  <!--node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+   <rosparam file="$(find rover_navigation)/config/costmap_params.yaml" command="load" ns="global_costmap" />
+   <rosparam file="$(find rover_navigation)/config/costmap_params.yaml" command="load" ns="local_costmap" />
+   <rosparam file="$(find rover_navigation)/config/local_costmap_params.yaml" command="load" />
+   <rosparam file="$(find rover_navigation)/config/global_costmap_params.yaml" command="load" />
+   <rosparam file="$(find rover_navigation)/config/base_local_planner_params.yaml" command="load" />
+   <remap from="/cmd_vel" to="/rover/cmd_vel"/>
+</node-->
 
-</launch>
